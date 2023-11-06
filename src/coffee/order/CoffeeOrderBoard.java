@@ -1,21 +1,20 @@
 package coffee.order;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class CoffeeOrderBoard {
-    private List<Order> orders;
-    private int orderNumber;
+    private Queue<Order> orders;
+    private int next = 1;
 
     public CoffeeOrderBoard() {
-        orders = new ArrayList<>();
-        orderNumber = 1;
+        orders = new LinkedList<>();
     }
 
     public void add(String name) {
-        Order order = new Order(orderNumber, name);
+        Order order = new Order(next, name);
         orders.add(order);
-        orderNumber++;
+        next++;
     }
 
     public Order deliver() {
@@ -23,9 +22,7 @@ public class CoffeeOrderBoard {
             return null;
         }
 
-        Order nextOrder = orders.get(0);
-        orders.remove(0);
-        return nextOrder;
+        return orders.poll();
     }
 
     public Order deliver(int orderNumber) {
