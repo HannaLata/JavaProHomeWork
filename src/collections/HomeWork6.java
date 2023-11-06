@@ -4,9 +4,9 @@ import java.util.*;
 
 public class HomeWork6 {
 
-    private static int countOccurance(List<String> wordList, String target) {
+    private static int countOccurance(List<String> words, String target) {
         int count = 0;
-        for ( String word : wordList ) {
+        for ( String word : words ) {
             if ( word.equals(target) ) {
                 count++;
             }
@@ -26,27 +26,27 @@ public class HomeWork6 {
         return new HashSet<>(nums);
     }
 
-    private static void calcOccurance(List<String> wordList) {
-        Map<String, Integer> wordCountMap = new HashMap<>();
+    private static void calcOccurance(List<String> words) {
+        Map<String, Integer> result = new HashMap<>();
 
-        for ( String word : wordList ) {
-            if ( wordCountMap.containsKey(word) ) {
-                int count = wordCountMap.get(word);
-                wordCountMap.put(word, count + 1);
+        for ( String word : words ) {
+            if ( result.containsKey(word) ) {
+                int count = result.get(word);
+                result.put(word, count + 1);
             } else {
-                wordCountMap.put(word, 1);
+                result.put(word, 1);
             }
         }
 
-        for ( Map.Entry<String, Integer> entry : wordCountMap.entrySet() ) {
+        for ( Map.Entry<String, Integer> entry : result.entrySet() ) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
 
-    public static List<Map<String, Object>> findOccurrence(List<String> wordList) {
+    public static List<Map<String, Object>> findOccurrence(List<String> words) {
         List<Map<String, Object>> result = new ArrayList<>();
 
-        for ( String word : wordList ) {
+        for ( String word : words ) {
             boolean found = false;
             for ( Map<String, Object> entry : result ) {
                 if (entry.get("name").equals(word)) {
@@ -58,10 +58,10 @@ public class HomeWork6 {
             }
 
             if ( !found ) {
-                Map<String, Object> occurrenceMap = new HashMap<>();
-                occurrenceMap.put("name", word);
-                occurrenceMap.put("occurrence", 1);
-                result.add(occurrenceMap);
+                Map<String, Object> output = new HashMap<>();
+                output.put("name", word);
+                output.put("occurrence", 1);
+                result.add(output);
             }
         }
 
